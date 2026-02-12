@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12 mb-3">
+    <button (click)="addTrip()" class="btn btn-primary">Add Trip</button>
+  </div>
+
+  <h2>{{ trips.length }} trips loaded</h2>
+
+  <div *ngFor="let trip of trips; trackBy: trackById" class="col-md-4">
+    <div class="card mt-2">
+      <div class="card-header">{{ trip.name }}</div>
+      <img src="assets/images/{{ trip.image }}" alt="trip thumbnail" class="card-img-top">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{ trip.resort }}</h6>
+        <p class="card-subtitle mt-3 mb-3 text-muted">
+          {{ trip.length }} only {{ trip.perPerson | currency:'USD':'symbol' }} per person
+        </p>
+        <p class="card-text" [innerHTML]="trip.description"></p>
+
+        <button (click)="editTrip(trip)" class="btn btn-primary btn-sm mt-2 me-2">Edit Trip</button>
+        <button (click)="deleteTrip(trip)" class="btn btn-danger btn-sm mt-2">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
