@@ -2,6 +2,9 @@ import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { TripData } from '../services/trip-data';
+import { AuthenticationService } from '../services/authentication';
+
+
 
 @Component({
   selector: 'app-trip-listing',
@@ -18,7 +21,8 @@ export class TripListingComponent implements OnInit {
     private tripDataService: TripData,
     private router: Router,
     private ngZone: NgZone,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private authenticationService: AuthenticationService
   ) {
     console.log('trip-listing constructor');
   }
@@ -46,6 +50,12 @@ export class TripListingComponent implements OnInit {
   trackById(index: number, trip: any): string {
     return trip._id;
   }
+
+  public isLoggedIn(): boolean {
+  return this.authenticationService.isLoggedIn();
+}
+
+
 
   public addTrip(): void {
     this.router.navigate(['add-trip']);

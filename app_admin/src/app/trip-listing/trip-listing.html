@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-12 mb-3">
-    <button (click)="addTrip()" class="btn btn-primary">Add Trip</button>
+    <button *ngIf="isLoggedIn()" (click)="addTrip()" class="btn btn-primary">Add Trip</button>
+
   </div>
 
   <h2>{{ trips.length }} trips loaded</h2>
@@ -16,8 +17,11 @@
         </p>
         <p class="card-text" [innerHTML]="trip.description"></p>
 
-        <button (click)="editTrip(trip)" class="btn btn-primary btn-sm mt-2 me-2">Edit Trip</button>
-        <button (click)="deleteTrip(trip)" class="btn btn-danger btn-sm mt-2">Delete</button>
+        <button *ngIf="isLoggedIn()" (click)="editTrip(trip)" class="btn btn-primary btn-sm mt-2 me-2">Edit Trip</button>
+
+
+        <button *ngIf="isLoggedIn()" (click)="deleteTrip(trip)" class="btn btn-danger btn-sm mt-2">Delete</button>
+
       </div>
     </div>
   </div>
